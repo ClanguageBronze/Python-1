@@ -41,8 +41,14 @@ class Main:
         self.releamEntry.pack()
         self.releamEntry.place(x=520, y=260)
 
-
-
+        self.ResultScrollBar=Scrollbar(self.window)
+        self.ResultScrollBar.pack()
+        self.ResultScrollBar.place(x=870,y=350)
+        self.ResultText=Text(self.window,width=49,height=27,borderwidth=5,relief='ridge',yscrollcommand=self.ResultScrollBar.set)
+        self.ResultText.pack()
+        self.ResultText.place(x=520,y=350)
+        self.ResultScrollBar.config(command=self.ResultText.yview)
+        self.ResultText.configure(state='disabled')
         self.window.mainloop()
 
 Main()
