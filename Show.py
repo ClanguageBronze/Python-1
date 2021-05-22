@@ -1,6 +1,9 @@
 import http.client
 from xml.dom.minidom import parse, parseString
 class Contents:
+    PeriodDataList=[]
+    AreaDataList=[]
+    ReleamDataList=[]
     def __init__(self):
         self.client_id="rxUZBymLQbyAVdAs19er"
         self.client_Secret="rxUZBymLQbyAVdAs19er"
@@ -12,5 +15,9 @@ class Contents:
         self.realm.request("GET","/openapi/rest/publicperformancedisplays/realm")
         self.detail = http.client.HTTPConnection("culture.go.kr")
         self.detail.request("GET", "/openapi/rest/publicperformancedisplays/d/")
-
         self.Naver_url="https://openapi.naver.com/v1/search/image.xml?query="
+    def SearchPeriod(self):
+        pass
+
+    def SearchArea(self):
+        pass
