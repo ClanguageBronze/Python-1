@@ -9,7 +9,6 @@ class Main:
     Font = font.Font(window, size=15, weight='bold', family='Consolas')
     FindShow=Show.Contents()
     def __init__(self):
-
         self.window.title("공연 전시 정보 검색")
         self.img=PhotoImage(file="Image/BackGround00.png")
         self.bg=Canvas(self.window,width=1200,height=800)
@@ -30,16 +29,16 @@ class Main:
         self.PeriodEntry.place(x=520,y=80)
         self.PeriodButton=Button(self.window,font=self.Font,text="검색",command=self.FindShow.SearchPeriod)
         self.PeriodButton.pack()
+
+        self.FindShow.SetPeriodEntry(self.PeriodEntry)
         self.PeriodButton.place(x=870,y=80)
         self.AreaEntry = Entry(self.window, font=self.Font, width=30, relief='ridge')
         self.AreaEntry.pack()
         self.AreaEntry.place(x=520, y=170)
         self.AreaButton = Button(self.window, font=self.Font, text="검색", command=self.FindShow.SearchArea)
         self.AreaButton.pack()
+        self.FindShow.SetAreaEntry(self.AreaEntry)
         self.AreaButton.place(x=870, y=170)
-        self.releamEntry = Entry(self.window, font=self.Font, width=30, relief='ridge')
-        self.releamEntry.pack()
-        self.releamEntry.place(x=520, y=260)
 
         self.ResultScrollBar=Scrollbar(self.window)
         self.ResultScrollBar.pack()
