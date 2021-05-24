@@ -14,7 +14,7 @@ class Contents:
     CheckPeriodOrArea=False
     PeriodLst=[]
     InfoText=[]
-
+    InfoText2 = []
     def __init__(self):
         self.client_id="rxUZBymLQbyAVdAs19er"
         self.client_Secret="rxUZBymLQbyAVdAs19er"
@@ -63,39 +63,56 @@ class Contents:
             for j in range(1,8):
                 self.PeriodDataList.append(str(subitem[i].childNodes[j].childNodes[0].data))
 
-        print(self.PeriodDataList)
+        print(self.PeriodDataList,self.InfoText)
         self.SortInfo(self.PeriodDataList)
         print(self.InfoText)
         for i in range(len(self.InfoText)):
             self.ListBox.insert(i,self.InfoText[i])
 
     def SearchArea(self):
-        url = 'http://www.culture.go.kr/openapi/rest/publicperformancedisplays/period'
+        url = 'http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area'
+
         queryParams = '?' + urlencode({quote_plus(
             'ServiceKey'): 'pSBc4o72gz9WozCjlVYbDsY6fB+c4JZMtwo6ZsZ57cHCKkggLtaVjPN8ZK47Kyy/k9swoZdZvA/9UEsETfhRSA=='
-                                          , quote_plus('keyword'): ''
-                                          , quote_plus('sortStdr'): '1'
                                           , quote_plus('ComMsgHeader'): ''
                                           , quote_plus('RequestTime'): '20100810:23003422'
                                           , quote_plus('CallBackURI'): ''
-                                          , quote_plus('MsgBody'): '', quote_plus('cPage'): '1'
-                                          , quote_plus('rows'): '10', quote_plus('place'): '1'
-                                            , quote_plus('gpsxfrom'): '129.101',
-                                       quote_plus('gpsyfrom'): '35.142', quote_plus('gpsxto'): '129.101',
-                                       quote_plus('gpsyto'): '35.142'
+                                          , quote_plus('MsgBody'): ''
+                                          , quote_plus('sido'): '서울'
+                                          , quote_plus('gugun'): '강남구'
+                                          , quote_plus('from'): '20210101', quote_plus('to'): '20211201'
+                                          , quote_plus('place'): '1'
+
+                                          , quote_plus('cPage'): '1'
+                                          , quote_plus('rows'): '10', quote_plus('keyword'): ''
+                                          , quote_plus('sortStdr'): '1'
                                        })
 
         request = Request(url + queryParams)
         request.get_method = lambda: 'GET'
         response_body = urlopen(request).read().decode("utf-8")
-        print(response_body)
+        parseData = parseString(response_body)
+        AreaInfo = parseData.childNodes
+        row = AreaInfo[0].childNodes
+        for item in row:
+            subitem = item.childNodes
+        totalCount = int(subitem[0].childNodes[0].data)
+        for i in range(10, 10 + totalCount):
+            for j in range(1, 8):
+                self.AreaDataList.append(str(subitem[i].childNodes[j].childNodes[0].data))
+
+        print(self.AreaDataList)
+        self.SortInfo(self.AreaDataList,self.InfoText2)
+        print(self.InfoText2)
+        for i in range(len(self.InfoText2)):
+            self.ListBox.insert(i, self.InfoText2[i])
 
 
-    def SortInfo(self,lst):
+    def SortInfo(self,lst,lst2):
         for i in range(0,int(len(lst)/7)):
-            self.InfoText.append('[제목]:'+self.PeriodDataList[0+(i*7)]+'   [시작일]:'+self.PeriodDataList[1+(i*7)]+'  [마감일]'+
-                                 self.PeriodDataList[2+(i*7)]+' [장소:]'+self.PeriodDataList[3+(i*7)]+' [분야]:'+self.PeriodDataList[4+(i*7)]
-                                 +'   [지역]:'+self.PeriodDataList[5+(i*7)])
+            lst2.append('[제목]:'+lst[0+(i*7)]+'   [시작일]:'+lst[1+(i*7)]+'  [마감일]'+
+                                 lst[2+(i*7)]+' [장소:]'+lst[3+(i*7)]+' [분야]:'+lst[4+(i*7)]
+                                 +'   [지역]:'+lst[5+(i*7)])
 
 
     def GetImage(self):
