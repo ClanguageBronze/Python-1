@@ -2,10 +2,20 @@ from tkinter import *
 from tkinter import font
 import tkinter.ttk
 import Show
-
+import requests
+import shutil
+import os
+import time
+from PIL import Image
+import urllib.request
 
 class Main:
+ #   url="http://www.culture.go.kr/upload/rdf/21/03/rdf_202103241832767063.jpg"
+ #   urllib.request.urlretrieve(url,"test.jpg")
+
+ #   img=Image.open("test.jpg")
     window = Tk()
+    BackGround=[]
     Font = font.Font(window, size=15, weight='bold', family='Consolas')
     FindShow=Show.Contents()
     def __init__(self):
@@ -19,7 +29,7 @@ class Main:
         logo = Label(self.window, image=self.logoimg)
         logo.pack()
         logo.place(x=0, y=0)
-        global SearchListBox
+
         self.GmailImage=PhotoImage(file='Image/Gmail.png')
         button=Button(self.window,text='Gmail',image=self.GmailImage)
         button.pack()
@@ -42,12 +52,35 @@ class Main:
 
         self.ResultScrollBar=Scrollbar(self.window)
         self.ResultScrollBar.pack()
-        self.ResultScrollBar.place(x=870,y=350)
-        self.ResultText=Text(self.window,width=49,height=27,borderwidth=5,relief='ridge',yscrollcommand=self.ResultScrollBar.set)
+        self.ResultScrollBar.place(x=1020,y=350)
+        TempFont=font.Font(self.window,size=10,weight='bold',family='Consloas')
+        self.ResultText=Listbox(self.window,font=TempFont,width=130,height=10,borderwidth=5,relief='ridge',yscrollcommand=self.ResultScrollBar.set)
+        self.FindShow.SetListBox(self.ResultText)
         self.ResultText.pack()
-        self.ResultText.place(x=520,y=350)
+
+        self.ResultText.place(x=100,y=350)
         self.ResultScrollBar.config(command=self.ResultText.yview)
-        self.ResultText.configure(state='disabled')
+
+        self.Imagebut = Button(self.window, text='Image', command=self.FindImage)
+        self.Imagebut.pack()
+        self.Imagebut.place(x=1050,y=450)
+        img = PhotoImage(file="Back.png")
+        self.PerformanceImage=Label(self.window,image=img)
+
+        self.PerformanceImage.pack()
+        self.PerformanceImage.place(x=200,y=40)
+
         self.window.mainloop()
+
+
+    def FindImage(self):
+        SearchIndex = self.ResultText.curselection()[0]
+        self.urlImage = self.FindShow.PeriodDataList[6 + (SearchIndex * 7)]
+        urllib.request.urlretrieve(self.urlImage, "test.png")
+        self.img = Image.open("test.png")
+        Img = self.img.resize((300, 300))
+        Img.save("test.png")
+        my_img = PhotoImage(file="test.png")
+        self.PerformanceImage.config(image=my_img)
 
 Main()
