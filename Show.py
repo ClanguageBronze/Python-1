@@ -52,6 +52,7 @@ class Contents:
         request = Request(url + queryParams)
         request.get_method = lambda: 'GET'
         response_body = urlopen(request).read().decode("utf-8")
+
         parseData=parseString(response_body)
         PeriodInfo=parseData.childNodes
         row=PeriodInfo[0].childNodes
