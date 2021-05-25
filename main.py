@@ -64,8 +64,8 @@ class Main:
         self.Imagebut = Button(self.window, text='Image', command=self.FindImage)
         self.Imagebut.pack()
         self.Imagebut.place(x=1050,y=450)
-        img = PhotoImage(file="Back.png")
-        self.PerformanceImage=Label(self.window,image=img)
+        irmg = PhotoImage(file="Back.png")
+        self.PerformanceImage=Label(self.window,image=irmg)
 
         self.PerformanceImage.pack()
         self.PerformanceImage.place(x=200,y=40)
@@ -75,12 +75,17 @@ class Main:
 
     def FindImage(self):
         SearchIndex = self.ResultText.curselection()[0]
-        self.urlImage = self.FindShow.PeriodDataList[6 + (SearchIndex * 7)]
+        if self.FindShow.m_bPeriod:
+            self.urlImage = self.FindShow.PeriodDataList[6 + (SearchIndex * 7)]
+        else:
+            self.urlImage = self.FindShow.AreaDataList[6 + (SearchIndex * 7)]
         urllib.request.urlretrieve(self.urlImage, "test.png")
-        self.img = Image.open("test.png")
-        Img = self.img.resize((300, 300))
+        self.rimg = Image.open("test.png")
+        Img = self.rimg.resize((300, 300))
         Img.save("test.png")
         my_img = PhotoImage(file="test.png")
         self.PerformanceImage.config(image=my_img)
+        my_img.image=my_img
+
 
 Main()
