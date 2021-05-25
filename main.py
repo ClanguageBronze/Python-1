@@ -37,7 +37,7 @@ class Main:
         self.PeriodEntry=Entry(self.window,font=self.Font,width=30,relief='ridge')
         self.PeriodEntry.pack()
         self.PeriodEntry.place(x=520,y=80)
-        self.PeriodButton=Button(self.window,font=self.Font,text="검색",command=self.FindShow.SearchPeriod)
+        self.PeriodButton=Button(self.window,font=self.Font,text="기간 검색",command=self.FindShow.SearchPeriod)
         self.PeriodButton.pack()
 
         self.FindShow.SetPeriodEntry(self.PeriodEntry)
@@ -45,7 +45,7 @@ class Main:
         self.AreaEntry = Entry(self.window, font=self.Font, width=30, relief='ridge')
         self.AreaEntry.pack()
         self.AreaEntry.place(x=520, y=170)
-        self.AreaButton = Button(self.window, font=self.Font, text="검색", command=self.FindShow.SearchArea)
+        self.AreaButton = Button(self.window, font=self.Font, text="지역 검색", command=self.FindShow.SearchArea)
         self.AreaButton.pack()
         self.FindShow.SetAreaEntry(self.AreaEntry)
         self.AreaButton.place(x=870, y=170)
