@@ -75,9 +75,11 @@ class Main:
 
     def FindImage(self):
         SearchIndex = self.ResultText.curselection()[0]
-        if self.FindShow.m_bPeriod:
+        if self.FindShow.m_bPeriod and self.FindShow.m_bArea:
+            self.urlImage = self.FindShow.m_Common[6 + (SearchIndex * 7)]
+        elif self.FindShow.m_bPeriod:
             self.urlImage = self.FindShow.PeriodDataList[6 + (SearchIndex * 7)]
-        else:
+        elif self.FindShow.m_bArea:
             self.urlImage = self.FindShow.AreaDataList[6 + (SearchIndex * 7)]
         urllib.request.urlretrieve(self.urlImage, "test.png")
         self.rimg = Image.open("test.png")

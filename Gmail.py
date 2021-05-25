@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 
 host="smtp.gmail.com"
 port="587"
-htmlFileName="logo.html"
+htmlFileName="test.png"
 senderAddr="leedongsu97@gmail.com"
 recipientAddr="leedongsu97@naver.com"
 

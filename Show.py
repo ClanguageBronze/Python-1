@@ -14,9 +14,9 @@ class Contents:
     CheckPeriodOrArea=False
     PeriodLst=[]
     InfoText=[]
-    InfoText2 = []
     m_bPeriod=False
     m_bArea=False
+    m_Common=[]
     def __init__(self):
         self.client_id="rxUZBymLQbyAVdAs19er"
         self.client_Secret="rxUZBymLQbyAVdAs19er"
@@ -32,6 +32,9 @@ class Contents:
         return self.PeriodDataList
     def SearchPeriod(self):
         self.m_bPeriod=True
+        self.PeriodDataList.clear()
+        self.ListBox.delete(0, len(self.InfoText))
+        self.InfoText.clear()
         url = 'http://www.culture.go.kr/openapi/rest/publicperformancedisplays/period'
         Value=self.PeriodEntry.get()
         lst= [eval(i) for i in Value.split()]
@@ -44,9 +47,9 @@ class Contents:
                                           , quote_plus('keyword') : ''
                                           , quote_plus('sortStdr') : '1'
                                           , quote_plus('ComMsgHeader') : ''
-                                          , quote_plus('RequestTime') : '20100810:23003422'
-                                          , quote_plus('CallBackURI') : ''
-                                          , quote_plus('MsgBody') : '', quote_plus('from') : self.PeriodLst[0]
+                                          , quote_plus('RequestTime') : '20210525:06273422'
+
+                                          , quote_plus('from') : self.PeriodLst[0]
                                           , quote_plus('to') : self.PeriodLst[1], quote_plus('cPage') : '1'
                                           , quote_plus('rows') : '10', quote_plus('place') : '2'
                                             })
@@ -65,12 +68,14 @@ class Contents:
             for j in range(1,8):
                 self.PeriodDataList.append(str(subitem[i].childNodes[j].childNodes[0].data))
 
-        print(self.PeriodDataList)
-        self.SortInfo(self.PeriodDataList,self.InfoText)
-        print(self.InfoText)
+        if self.m_bArea == True and self.m_bPeriod == True:
+            self.CommonInfo()
+            self.SortInfo(self.m_Common, self.InfoText)
+        else:
+            self.SortInfo(self.PeriodDataList, self.InfoText)
+        self.ListBox.delete(0, len(self.InfoText) + 1)
         for i in range(len(self.InfoText)):
-            self.ListBox.insert(i,self.InfoText[i])
-
+            self.ListBox.insert(i, self.InfoText[i])
     def SearchArea(self):
         self.m_bArea=True
         url = 'http://www.culture.go.kr/openapi/rest/publicperformancedisplays/area'
@@ -85,7 +90,7 @@ class Contents:
                                           , quote_plus('sido'): str(lst[0])
                                           , quote_plus('gugun'): str(lst[1])
                                           , quote_plus('from'): '20200101', quote_plus('to'): '20211201'
-                                          , quote_plus('place'): '0'
+                                          , quote_plus('place'): '1'
 
                                           , quote_plus('cPage'): '1'
                                           , quote_plus('rows'): '10', quote_plus('keyword'): ''
@@ -106,12 +111,17 @@ class Contents:
             for j in range(1, 8):
                 self.AreaDataList.append(str(subitem[i].childNodes[j].childNodes[0].data))
 
-        print(self.AreaDataList)
-        self.SortInfo(self.AreaDataList,self.InfoText2)
-        print(self.InfoText2)
-        self.ListBox.delete(0,len(self.InfoText2))
-        for i in range(len(self.InfoText2)):
-            self.ListBox.insert(i, self.InfoText2[i])
+        if self.m_bArea == True and self.m_bPeriod == True:
+            self.CommonInfo()
+            self.SortInfo(self.m_Common,self.InfoText)
+        else:
+            self.SortInfo(self.AreaDataList,self.InfoText)
+
+
+        print(self.InfoText)
+        self.ListBox.delete(0,len(self.InfoText)+1)
+        for i in range(len(self.InfoText)):
+            self.ListBox.insert(i, self.InfoText[i])
 
 
     def SortInfo(self,lst,lst2):
@@ -122,5 +132,13 @@ class Contents:
                                  +'   [지역]:'+lst[5+(i*7)])
 
 
-    def GetImage(self):
-        pass
+    def CommonInfo(self):
+        self.m_Common.clear()
+        for i in range(0,int(len(self.PeriodDataList)),7):
+            for j in range(0,int(len(self.AreaDataList)),7):
+                if self.PeriodDataList[i]==self.AreaDataList[j]:
+                    for h in range(7):
+                        self.m_Common.append(self.PeriodDataList[h+i])
+
+        print(self.m_Common)
+
