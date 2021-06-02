@@ -1,0 +1,19 @@
+
+
+str_subject = '공연전시 정보'
+template = Template("""<html>
+                            <head></head>
+                            <body>
+                                Hi ${NAME}.<br>
+                                <img src="cid:my_image1"><br>
+                                This is a test message.
+                            </body>
+                        </html>""")
+template_params       = {'Title':'Son'}
+str_image_file_name   = 'test.png'
+str_cid_name          = 'my_image1'
+emailHTMLImageContent = EmailHTMLImageContent(str_subject, str_image_file_name, str_cid_name, template, template_params)
+
+str_from_email_addr = 'god@test.com' # 발신자
+str_to_eamil_addrs  = ['angel@test.com', 'devil@test.com'] # 수신자리스트
+emailSender.send_message(emailHTMLImageContent, str_from_email_addr, str_to_eamil_addrs)
