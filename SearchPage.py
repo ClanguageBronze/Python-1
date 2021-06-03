@@ -11,9 +11,9 @@ import urllib.request
 
 
 class Page1():
-    def __init__(self,window):
+    def __init__(self,window,Find):
         self.window=window
-        self.FindShow = Show.Contents()
+        self.FindShow = Find
         self.BackGround = []
         self.Font = font.Font(self.window, size=15, weight='bold', family='Consolas')
         self.img = PhotoImage(file="Image/BackGround00.png")
@@ -27,10 +27,7 @@ class Page1():
         logo.place(x=0, y=0)
 
 
-        self.GmailImage = PhotoImage(file='Image/Gmail.png')
-        button = Button(self.window, text='Gmail', image=self.GmailImage)
-        button.pack()
-        button.place(x=1200 - self.GmailImage.width(), y=100)
+
         self.PeriodEntry = Entry(self.window, font=self.Font, width=30, relief='ridge')
         self.PeriodEntry.pack()
         self.PeriodEntry.place(x=520, y=80)
@@ -88,4 +85,6 @@ class Page1():
 
     def GetUrlImage(self):
         return self.urlImage
+    def GetFindShow(self):
+        return self.FindShow
 

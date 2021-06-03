@@ -24,12 +24,19 @@ class Contents:
         self.PeriodEntry=Button
     def SetAreaEntry(self,Button):
         self.AreaEntry=Button
-    def SetListBox(self,Box):        self.ListBox=Box
+    def SetListBox(self,Box):
+        self.ListBox=Box
     def SetCanvas(self,Canvas,img):
         self.ImageCanvas=Canvas
         self.LoadImg=img
+    def GetListBox(self):
+        return self.ListBox
     def GetPeriodDataList(self):
         return self.PeriodDataList
+    def GetPeriod(self):
+        return self.m_bPeriod
+    def GetArea(self):
+        return self.m_bArea
     def SearchPeriod(self):
         self.m_bPeriod=True
         self.PeriodDataList.clear()

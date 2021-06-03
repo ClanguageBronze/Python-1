@@ -18,13 +18,17 @@ import Gmail
 
 class Main:
     def __init__(self):
+        self.FindShow = Show.Contents()
         self.window = Tk()
         self.window.title("공연 전시 정보 검색")
         notebook=tkinter.ttk.Notebook(self.window,width=1200,height=800)
         notebook.pack()
         SearchPage1=Frame(self.window)
         notebook.add(SearchPage1,text='검색')
-        _page1=SearchPage.Page1(SearchPage1)
+        _page1=SearchPage.Page1(SearchPage1,self.FindShow)
+        GMAIL=Frame(self.window)
+        notebook.add(GMAIL,text='메일')
+        _page2=Gmail.MailSend(GMAIL,self.FindShow)
 
         self.window.mainloop()
 
