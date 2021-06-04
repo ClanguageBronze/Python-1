@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec2a9b35-bc82-4219-8cbf-7dd92db3c745" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Telegramnoti.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gmail.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gmail.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Information.html" beforeDir="false" afterPath="$PROJECT_DIR$/Information.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SearchPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SearchPage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Show.py" beforeDir="false" afterPath="$PROJECT_DIR$/Show.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Smtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Smtp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emailsender.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegramteller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +94,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Show" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Telegramnoti" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -109,7 +106,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Show.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Telegramnoti.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Telegramteller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Telegramteller.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -142,15 +160,17 @@
     <list>
       <item itemvalue="Python.Gmail" />
       <item itemvalue="Python.SearchPage" />
-      <item itemvalue="Python.Show" />
       <item itemvalue="Python.main" />
+      <item itemvalue="Python.Telegramteller" />
+      <item itemvalue="Python.Telegramnoti" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.Telegramnoti" />
+        <item itemvalue="Python.Telegramteller" />
         <item itemvalue="Python.Gmail" />
         <item itemvalue="Python.SearchPage" />
-        <item itemvalue="Python.Show" />
       </list>
     </recent_temporary>
   </component>

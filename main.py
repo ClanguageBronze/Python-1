@@ -15,6 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import SearchPage
 import Gmail
+import Telegramteller
 
 class Main:
     def __init__(self):
@@ -30,7 +31,10 @@ class Main:
         notebook.add(GMAIL,text='메일')
         _page2=Gmail.MailSend(GMAIL,self.FindShow)
 
+
+    def Running(self):
+        Telegramteller.Running()
         self.window.mainloop()
 
-
-Main()
+main=Main()
+main.Running()
