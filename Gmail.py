@@ -12,7 +12,7 @@ from email.mime.image import MIMEImage
 import Show
 
 class MailSend:
-    Title=''
+    Title=[]
     FromEmail='leedongsu97@gmail.com'
 
     def __init__(self,window,Find):
@@ -36,23 +36,32 @@ class MailSend:
         self.EmailEntry = Entry(self.window, font=self.Font, width=30, relief='ridge')
         self.EmailEntry.pack()
         self.EmailEntry.place(x=520, y=80)
-
+        irmg = PhotoImage(file="Back2.png")
+        self.PerformanceImage = Label(self.window, image=irmg)
+        self.PerformanceImage.pack()
+        self.PerformanceImage.place(x=100, y=150)
+        self.MapButton = Button(self.window, font=self.Font, text="Map", command=self.m_FMapButton)
+        self.MapButton.pack()
+        self.MapButton.place(x=300, y=10)
     def SendMail(self):
         str_subject = '공연전시 정보'
         self.ToEmail=self.EmailEntry.get()
         SearchIndex = self.FindShow.GetListBox().curselection()[0]
         if self.FindShow.m_bPeriod and self.FindShow.m_bArea:
-            self.Title = self.FindShow.m_Common[0 + (SearchIndex * 7)]
+            for i in range(0,9):
+                self.Title.append(self.FindShow.m_Common[i + (SearchIndex * 9)])
         elif self.FindShow.m_bPeriod:
-            self.Title = self.FindShow.PeriodDataList[0 + (SearchIndex * 7)]
+            for i in range(0,9):
+                self.Title.append(self.FindShow.PeriodDataList[i + (SearchIndex * 9)])
         elif self.FindShow.m_bArea:
-            self.Title = self.FindShow.AreaDataList[0 + (SearchIndex * 7)]
+            for i in range(0,9):
+                self.Title.append(self.FindShow.AreaDataList[i + (SearchIndex * 9)])
         template = Template("""<html>
                                             <head></head>
                                             <body>
                                                 ${Title}.<br>
                                                 <img src="cid:my_image1"><br>
-                                                This is a test message.
+                                        
                                             </body>
                                         </html>""")
         template_params = {'Title':self.Title}
@@ -65,3 +74,7 @@ class MailSend:
         str_to_eamil_addrs = [self.ToEmail]  # 수신자리스트
         e=EmailSender("smtp.gmail.com","587",self.FromEmail)
         e.send_message(emailHTMLImageContent, self.FromEmail, self.ToEmail)
+    def m_FMapButton(self):
+        my_img = PhotoImage(file="map.png")
+        self.PerformanceImage.config(image=my_img)
+        my_img.image = my_img

@@ -8,12 +8,13 @@ import os
 import time
 from PIL import Image
 import urllib.request
-
+import FindMap
 
 class Page1():
     def __init__(self,window,Find):
         self.window=window
         self.FindShow = Find
+
         self.BackGround = []
         self.Font = font.Font(self.window, size=15, weight='bold', family='Consolas')
         self.img = PhotoImage(file="Image/BackGround00.png")
@@ -68,12 +69,14 @@ class Page1():
     def FindImage(self):
         SearchIndex = self.ResultText.curselection()[0]
         if self.FindShow.m_bPeriod and self.FindShow.m_bArea:
-            self.urlImage = self.FindShow.m_Common[6 + (SearchIndex * 7)]
+            self.urlImage = self.FindShow.m_Common[6 + (SearchIndex * 9)]
+            FindMap.ReturnMap(self.FindShow.m_Common[8], self.FindShow.m_Common[7])
         elif self.FindShow.m_bPeriod:
-            self.urlImage = self.FindShow.PeriodDataList[6 + (SearchIndex * 7)]
+            self.urlImage = self.FindShow.PeriodDataList[6 + (SearchIndex * 9)]
+            FindMap.ReturnMap(self.FindShow.PeriodDataList[8], self.FindShow.PeriodDataList[7])
         elif self.FindShow.m_bArea:
-            self.urlImage = self.FindShow.AreaDataList[6 + (SearchIndex * 7)]
-
+            self.urlImage = self.FindShow.AreaDataList[6 + (SearchIndex * 9)]
+            FindMap.ReturnMap(self.FindShow.AreaDataList[8], self.FindShow.AreaDataList[7])
         urllib.request.urlretrieve(self.urlImage, "test.png")
         self.rimg = Image.open("test.png")
         Img = self.rimg.resize((300, 300))
@@ -81,6 +84,7 @@ class Page1():
         my_img = PhotoImage(file="test.png")
         self.PerformanceImage.config(image=my_img)
         my_img.image = my_img
+
 
 
     def GetUrlImage(self):

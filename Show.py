@@ -17,6 +17,7 @@ class Contents:
     m_bPeriod=False
     m_bArea=False
     m_Common=[]
+
     def __init__(self):
         self.client_id="rxUZBymLQbyAVdAs19er"
         self.client_Secret="rxUZBymLQbyAVdAs19er"
@@ -72,7 +73,7 @@ class Contents:
             subitem=item.childNodes
         totalCount=int(subitem[0].childNodes[0].data)
         for i in range(8,8+totalCount):
-            for j in range(1,8):
+            for j in range(1,10):
                 self.PeriodDataList.append(str(subitem[i].childNodes[j].childNodes[0].data))
 
         if self.m_bArea == True and self.m_bPeriod == True:
@@ -114,8 +115,9 @@ class Contents:
             subitem = item.childNodes
         totalCount = int(subitem[0].childNodes[0].data)
         self.AreaDataList.clear()
+
         for i in range(10, 10 + totalCount):
-            for j in range(1, 8):
+            for j in range(1, 10):
                 self.AreaDataList.append(str(subitem[i].childNodes[j].childNodes[0].data))
 
         if self.m_bArea == True and self.m_bPeriod == True:
@@ -133,19 +135,20 @@ class Contents:
 
     def SortInfo(self,lst,lst2):
         lst2.clear()
-        for i in range(0,int(len(lst)/7)):
-            lst2.append('[제목] :'+lst[0+(i*7)]+'   [시작일] :'+lst[1+(i*7)]+'  [마감일] :'+
-                                 lst[2+(i*7)]+' [장소] :'+lst[3+(i*7)]+' [분야] :'+lst[4+(i*7)]
-                                 +'   [지역]:'+lst[5+(i*7)])
+        for i in range(0,int(len(lst)/9)):
+            lst2.append('[제목] :'+lst[0+(i*9)]+'   [시작일] :'+lst[1+(i*9)]+'  [마감일] :'+
+                                 lst[2+(i*9)]+' [장소] :'+lst[3+(i*9)]+' [분야] :'+lst[4+(i*9)]
+                                 +'   [지역]:'+lst[5+(i*9)])
 
 
     def CommonInfo(self):
         self.m_Common.clear()
-        for i in range(0,int(len(self.PeriodDataList)),7):
-            for j in range(0,int(len(self.AreaDataList)),7):
+        for i in range(0,int(len(self.PeriodDataList)),9):
+            for j in range(0,int(len(self.AreaDataList)),9):
                 if self.PeriodDataList[i]==self.AreaDataList[j]:
-                    for h in range(7):
+                    for h in range(9):
                         self.m_Common.append(self.PeriodDataList[h+i])
+
 
         print(self.m_Common)
 
