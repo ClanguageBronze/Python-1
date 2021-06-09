@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ec2a9b35-bc82-4219-8cbf-7dd92db3c745" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/FindMap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gmail.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gmail.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SearchPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/SearchPage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Show.py" beforeDir="false" afterPath="$PROJECT_DIR$/Show.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telegramnoti.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegramnoti.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Telegramteller.py" beforeDir="false" afterPath="$PROJECT_DIR$/Telegramteller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.png" beforeDir="false" />
-    </list>
+    <list default="true" id="ec2a9b35-bc82-4219-8cbf-7dd92db3c745" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
